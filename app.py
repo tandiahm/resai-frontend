@@ -1,7 +1,6 @@
 import os
 from typing import Dict, Optional
 
-import matplotlib.pyplot as plt
 import requests
 import streamlit as st
 
@@ -137,16 +136,8 @@ with right:
                             data={"job_description": job_description},
                         )
                         pct = float(out.get("match_percentage", 0))
-                        fig, ax = plt.subplots(figsize=(3.2, 3.2))
-                        ax.pie(
-                            [int(round(pct)), max(0, 100 - int(round(pct)))],
-                            colors=["#0ea5e9", "#e2e8f0"],
-                            startangle=90,
-                            wedgeprops=dict(width=0.36, edgecolor="white"),
-                        )
-                        ax.text(0, 0, f"{pct:.1f}%", ha="center", va="center", fontsize=22, fontweight="bold")
-                        ax.axis("equal")
-                        st.pyplot(fig)
+                        st.metric("Resume Match", f"{pct:.1f}%")
+                        st.progress(min(max(int(round(pct)), 0), 100))
                         st.markdown(f'<div class="result">{out["analysis"].replace(chr(10), "<br>")}</div>', unsafe_allow_html=True)
 
                     elif mode == "Resume Optimizer":
