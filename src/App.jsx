@@ -2,7 +2,7 @@ import { useState } from 'react'
 import ToolGrid from './components/ToolGrid'
 import InputPanel from './components/InputPanel'
 import ResultPanel from './components/ResultPanel'
-import { apiCall, checkHealth } from './api'
+import { apiCall } from './api'
 
 export const TOOLS = [
   { id: 'resume-analysis',  icon: '📊', title: 'Resume Analysis',  desc: 'Match score + recruiter feedback',    endpoint: '/api/resume/analyze' },
@@ -19,7 +19,6 @@ export default function App() {
   const [result, setResult]   = useState(null)
   const [loading, setLoading] = useState(false)
   const [error, setError]     = useState(null)
-  const [health, setHealth]   = useState(null)
 
   function selectTool(t) {
     setTool(t)
@@ -50,25 +49,20 @@ export default function App() {
     }
   }
 
-  async function handleHealthCheck() {
-    try {
-      const h = await checkHealth()
-      setHealth(`✅ API OK — model: ${h.model}`)
-    } catch {
-      setHealth('❌ Health check failed')
-    }
-  }
-
   return (
     <div className="app">
       <header className="hero">
         <div className="hero-text">
-          <h1>ResAI Campus</h1>
-          <p>AI career copilot — resume, interviews, and job targeting in one place.</p>
+          <div className="hero-badge">AI Career Copilot</div>
+          <h1>Land your <span className="gradient-text">dream job</span> faster.</h1>
+          <p>Resume analysis, cover letters, interview prep, and live job search — all in one place.</p>
         </div>
-        <div className="hero-actions">
-          <button className="health-btn" onClick={handleHealthCheck}>Check API</button>
-          {health && <span className="health-status">{health}</span>}
+        <div className="hero-visual">
+          <div className="hero-stat"><span className="stat-num">7</span><span className="stat-label">AI Tools</span></div>
+          <div className="hero-divider" />
+          <div className="hero-stat"><span className="stat-num">~5s</span><span className="stat-label">Avg Response</span></div>
+          <div className="hero-divider" />
+          <div className="hero-stat"><span className="stat-num">100%</span><span className="stat-label">Free to Use</span></div>
         </div>
       </header>
 

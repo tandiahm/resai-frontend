@@ -46,7 +46,7 @@ export default function InputPanel({ tool, onRun, loading }) {
               accept=".pdf"
               onChange={(e) => setFile(e.target.files[0] || null)}
             />
-            <label htmlFor="resume-upload" className="file-label">
+            <label htmlFor="resume-upload" className={`file-label${file ? ' has-file' : ''}`}>
               {file ? `📄 ${file.name}` : '📄 Choose PDF file'}
             </label>
           </div>

@@ -4,8 +4,8 @@ import DonutChart from './DonutChart'
 function Empty() {
   return (
     <div className="result-empty">
-      <span className="result-empty-icon">🚀</span>
-      <p>Upload a resume and job description, then click <strong>Run</strong>.</p>
+      <span className="result-empty-icon">✨</span>
+      <p>Upload your resume and paste a job description, then hit <strong>Run</strong> to get started.</p>
     </div>
   )
 }
